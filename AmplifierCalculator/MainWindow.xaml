@@ -1,0 +1,243 @@
+﻿<Window x:Class="AmplifierCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AmplifierCalculator"
+        mc:Ignorable="d"
+        Title="Linear Amplifier Calculator" Height="456" Width="700">
+    <TabControl x:Name="main">
+        <TabItem Header="Inverting base">
+            <Grid>
+                <local:VarBox Height="20" Margin="0,10,70,0" Padding="0" HorizontalAlignment="Right"/>
+                <Button Content="Reset" Margin="0,10,10,0" HorizontalAlignment="Right" Width="55"
+                        Click="InvBaseReset" Height="20" VerticalAlignment="Top"/>
+                <Image Width="400" Source="/Images/inv_base.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" />
+                <Label Content="U__out =" HorizontalAlignment="Left" Margin="415,58,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uOut" Margin="468,59,0,0" TextChanged="InvBaseVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="518,58,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in =" HorizontalAlignment="Left" Margin="424,90,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uIn" Margin="468,91,0,0" TextChanged="InvBaseVoltageChanged"/>
+                <Separator HorizontalAlignment="Left" Height="10" Margin="415,82,0,0" VerticalAlignment="Top" Width="120"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="528,207,0,0" VerticalAlignment="Top"/>
+                <Label Content="= -" HorizontalAlignment="Left" Margin="535,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="R2 =" HorizontalAlignment="Left" Margin="561,58,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="r2" Margin="596,59,0,0" TextChanged="InvBaseResistanceChanged"/>
+                <Label Content="Ω" HorizontalAlignment="Left" Margin="646,58,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="10" Margin="561,82,0,0" VerticalAlignment="Top" Width="104"/>
+                <Label Content="R1 =" HorizontalAlignment="Left" Margin="561,90,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="r1" Margin="596,91,0,0" TextChanged="InvBaseResistanceChanged"/>
+                <Label Content="Ω" HorizontalAlignment="Left" Margin="646,90,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="415,128,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="gain" Margin="433,129,0,0" TextChanged="InvBaseGainChanged"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="483,128,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="gainDb" Margin="501,129,0,0" TextChanged="InvBaseGainDbChanged"/>
+                <Label Content="dB" HorizontalAlignment="Left" Margin="551,128,0,0" VerticalAlignment="Top"/>
+                <Label Content="(R1 = R_in)" HorizontalAlignment="Left" Margin="602,114,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__out__eff =" HorizontalAlignment="Left" Margin="415,178,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uOutEff" Margin="486,179,0,0" TextChanged="InvEffVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="536,178,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__eff =" HorizontalAlignment="Left" Margin="415,207,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uInEff" Margin="478,208,0,0" TextChanged="InvEffVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="518,90,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Inverting low-pass">
+            <Grid>
+                <Image Source="/Images/inv_c.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="10"/>
+                <local:VarBox Height="20" Margin="0,10,70,0" Padding="0" HorizontalAlignment="Right"/>
+                <Label Content="&quot;Inverting base&quot; contains other variables." HorizontalAlignment="Left"
+                       Margin="415,39,0,0" VerticalAlignment="Top"/>
+                <Button Content="Reset" Margin="0,10,10,0" HorizontalAlignment="Right" Width="55"
+                        Height="20" VerticalAlignment="Top" Click="InvLowpassReset"/>
+                <Label Content="C =" HorizontalAlignment="Left" Margin="415,70,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="cF" Margin="444,71,0,0" TextChanged="InvCapacitorChanged"/>
+                <Label Content="F =" HorizontalAlignment="Left" Margin="494,70,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="cmF" Margin="521,71,0,0" TextChanged="InvCapacitorChanged"/>
+                <Label Content="mF =" HorizontalAlignment="Left" Margin="571,70,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="cuF" Margin="444,101,0,0" TextChanged="InvCapacitorChanged"/>
+                <Label Content="μF =" HorizontalAlignment="Left" Margin="494,100,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="cnF" Margin="528,101,0,0" TextChanged="InvCapacitorChanged"/>
+                <Label Content="nF" HorizontalAlignment="Left" Margin="578,100,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__out" HorizontalAlignment="Left" Margin="415,132,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="415,154,0,0" VerticalAlignment="Top" Width="41"/>
+                <Label Content="U__in" HorizontalAlignment="Left" Margin="415,156,0,0" VerticalAlignment="Top" Width="41"
+                       HorizontalContentAlignment="Center"/>
+                <Label Content="(s) = -" HorizontalAlignment="Left" Margin="456,144,0,0" VerticalAlignment="Top"/>
+                <Label Content="R2" HorizontalAlignment="Left" Margin="498,132,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="498,154,0,0" VerticalAlignment="Top" Width="24"/>
+                <Label Content="R1" HorizontalAlignment="Left" Margin="498,156,0,0" VerticalAlignment="Top" Width="24"
+                       HorizontalContentAlignment="Center"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="522,146,0,0" VerticalAlignment="Top"/>
+                <Label Content="1" HorizontalAlignment="Left" Margin="537,132,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="51"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="537,154,0,0" VerticalAlignment="Top" Width="51"/>
+                <Label Content="1+s/ω2" HorizontalAlignment="Left" Margin="537,156,0,0" VerticalAlignment="Top"/>
+                <Label Content="ω1 =" HorizontalAlignment="Left" Margin="415,186,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="omega1" Margin="453,188,0,0" TextChanged="InvOmegaChanged"/>
+                <Label Content="r/s" HorizontalAlignment="Left" Margin="503,186,0,0" VerticalAlignment="Top"/>
+                <Label Content="ω2 =" HorizontalAlignment="Left" Margin="415,228,0,0" VerticalAlignment="Top"/>
+                <Label Content="1" HorizontalAlignment="Left" Margin="453,216,0,0" VerticalAlignment="Top" Width="36"
+                       HorizontalContentAlignment="Center"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="453,238,0,0" VerticalAlignment="Top" Width="36"/>
+                <Label Content="R2*C" HorizontalAlignment="Left" Margin="453,240,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="491,228,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="omega2" Margin="509,228,0,0" IsEnabled="False"/>
+                <Label Content="r/s" HorizontalAlignment="Left" Margin="559,228,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__p =" HorizontalAlignment="Left" Margin="10,275,0,0" VerticalAlignment="Top"/>
+                <Label Content="φ = -180 - arctg(ω1/ω2) =" HorizontalAlignment="Left" Margin="415,275,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="angle" Margin="566,276,0,0" IsEnabled="False"/>
+                <Label Content="°" HorizontalAlignment="Left" Margin="616,275,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="468,328,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uAmpP" Margin="486,329,0,0" IsEnabled="False"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="536,328,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uAmpP_dB" Margin="554,329,0,0" IsEnabled="False"/>
+                <Label Content="U__out__p" HorizontalAlignment="Left" Margin="415,316,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__p" HorizontalAlignment="Left" Margin="415,340,0,0" VerticalAlignment="Top" Width="53"
+                       HorizontalContentAlignment="Center"/>
+                <local:VarBox x:Name="uInP" Margin="66,276,0,0" TextChanged="InvPeakInputVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="116,275,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__p__eff = U__in__p / √2 =" HorizontalAlignment="Left" Margin="164,275,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uInPEff" Margin="314,276,0,0" TextChanged="InvPeakInputVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="364,275,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="415,338,0,0" VerticalAlignment="Top" Width="53"/>
+                <Label Content="dB" HorizontalAlignment="Left" Margin="604,328,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__out__p = U__in__p" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="113,316,0,0" VerticalAlignment="Top"/>
+                <Label Content="R2" HorizontalAlignment="Left" Margin="128,302,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="128,324,0,0" VerticalAlignment="Top" Width="24"/>
+                <Label Content="R1" HorizontalAlignment="Left" Margin="128,326,0,0" VerticalAlignment="Top"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="152,316,0,0" VerticalAlignment="Top"/>
+                <Label Content="1" HorizontalAlignment="Left" Margin="167,302,0,0" VerticalAlignment="Top" Width="88"
+                       HorizontalContentAlignment="Center"/>
+                <Label Content="√(1+(ω1/ω2)²)" HorizontalAlignment="Left" Margin="167,324,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="167,324,0,0" VerticalAlignment="Top" Width="88"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="255,314,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uOutP" Margin="273,314,0,0" IsEnabled="False"/>
+                <Label Content="U__out__p__eff = U__out__p / √2 =" HorizontalAlignment="Left" Margin="10,356,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="uOutPEff" Margin="177,358,0,0" IsEnabled="False"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Non-inverting base">
+            <Grid>
+                <Image Width="400" Source="/Images/non-inv_base.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
+                <local:VarBox Height="20" Margin="0,10,70,0" Padding="0" HorizontalAlignment="Right"/>
+                <Button Content="Reset" Margin="0,10,10,0" HorizontalAlignment="Right" Width="55"
+                        Click="NonInvBaseReset" Height="20" VerticalAlignment="Top"/>
+                <Label Content="U__out =" HorizontalAlignment="Left" Margin="415,58,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uOut" Margin="468,59,0,0" TextChanged="NonInvBaseVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="518,58,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="10" Margin="415,82,0,0" VerticalAlignment="Top" Width="115"/>
+                <Label Content="U__in =" HorizontalAlignment="Left" Margin="424,90,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uIn" Margin="468,91,0,0" TextChanged="NonInvBaseVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="518,90,0,0" VerticalAlignment="Top"/>
+                <Label Content="= 1 +" HorizontalAlignment="Left" Margin="530,72,0,0" VerticalAlignment="Top"/>
+                <Label Content="R2 =" HorizontalAlignment="Left" Margin="570,58,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_r2" Margin="605,59,0,0" TextChanged="NonInvBaseResistanceChanged"/>
+                <Label Content="Ω" HorizontalAlignment="Left" Margin="655,58,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="10" Margin="570,82,0,0" VerticalAlignment="Top" Width="104"/>
+                <Label Content="R1 =" HorizontalAlignment="Left" Margin="570,90,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_r1" Margin="605,91,0,0" TextChanged="NonInvBaseResistanceChanged"/>
+                <Label Content="Ω" HorizontalAlignment="Left" Margin="655,90,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="415,128,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_gain" Margin="433,129,0,0" TextChanged="NonInvBaseGainChanged"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="483,128,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_gainDb" Margin="501,129,0,0" TextChanged="NonInvBaseGainDbChanged"/>
+                <Label Content="dB" HorizontalAlignment="Left" Margin="551,128,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__out__eff =" HorizontalAlignment="Left" Margin="415,178,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uOutEff" Margin="486,179,0,0" TextChanged="NonInvEffVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="536,178,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__eff =" HorizontalAlignment="Left" Margin="415,207,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uInEff" Margin="478,208,0,0" TextChanged="NonInvEffVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="528,207,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Non-inverting low-pass">
+            <Grid>
+                <Image Source="/Images/non-inv_c.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Width="400"/>
+                <local:VarBox Height="20" Margin="0,10,70,0" Padding="0" HorizontalAlignment="Right"/>
+                <Button Content="Reset" Margin="0,10,10,0" HorizontalAlignment="Right" Width="55"
+                        Height="20" VerticalAlignment="Top" Click="NonInvLowpassReset"/>
+                <Label Content="&quot;Non-inverting base&quot; contains other variables." HorizontalAlignment="Left"
+                       Margin="415,39,0,0" VerticalAlignment="Top"/>
+                <Label Content="C =" HorizontalAlignment="Left" Margin="415,70,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_cF" Margin="444,71,0,0" TextChanged="NonInvCapacitorChanged"/>
+                <Label Content="F =" HorizontalAlignment="Left" Margin="494,70,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_cmF" Margin="521,71,0,0" TextChanged="NonInvCapacitorChanged"/>
+                <Label Content="mF =" HorizontalAlignment="Left" Margin="571,70,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_cuF" Margin="444,101,0,0" TextChanged="NonInvCapacitorChanged"/>
+                <Label Content="μF =" HorizontalAlignment="Left" Margin="494,100,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_cnF" Margin="528,101,0,0" TextChanged="NonInvCapacitorChanged"/>
+                <Label Content="nF" HorizontalAlignment="Left" Margin="578,100,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__out" HorizontalAlignment="Left" Margin="415,140,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in" HorizontalAlignment="Left" Margin="415,163,0,0" VerticalAlignment="Top" Width="41"
+                       HorizontalContentAlignment="Center"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="415,161,0,0" VerticalAlignment="Top" Width="41"/>
+                <Label Content="(s) =" HorizontalAlignment="Left" Margin="456,151,0,0" VerticalAlignment="Top"/>
+                <Label Content="R1+R2" HorizontalAlignment="Left" Margin="490,140,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="490,161,0,0" VerticalAlignment="Top" Width="46"/>
+                <Label Content="R1" HorizontalAlignment="Left" Margin="490,163,0,0" VerticalAlignment="Top" Width="46"
+                       HorizontalContentAlignment="Center"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="536,154,0,0" VerticalAlignment="Top"/>
+                <Label Content="1+s/ω2" HorizontalAlignment="Left" Margin="551,140,0,0" VerticalAlignment="Top"/>
+                <Label Content="1+s/ω3" HorizontalAlignment="Left" Margin="551,163,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="551,161,0,0" VerticalAlignment="Top" Width="51"/>
+                <Label Content="ω1 =" HorizontalAlignment="Left" Margin="415,202,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_omega1" Margin="453,203,0,0" TextChanged="NonInvOmegaChanged"/>
+                <Label Content="r/s" HorizontalAlignment="Left" Margin="503,202,0,0" VerticalAlignment="Top"/>
+                <Label Content="ω2 =" HorizontalAlignment="Left" Margin="415,244,0,0" VerticalAlignment="Top"/>
+                <Label Content="R1+R2" HorizontalAlignment="Left" Margin="453,233,0,0" VerticalAlignment="Top" Width="55"
+                       HorizontalContentAlignment="Center"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="453,254,0,0" VerticalAlignment="Top" Width="55"/>
+                <Label Content="R1*R2*C" HorizontalAlignment="Left" Margin="453,256,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="508,244,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_omega2" Margin="526,245,0,0" IsEnabled="False"/>
+                <Label Content="r/s" HorizontalAlignment="Left" Margin="576,244,0,0" VerticalAlignment="Top"/>
+                <Label Content="ω3 =" HorizontalAlignment="Left" Margin="415,298,0,0" VerticalAlignment="Top"/>
+                <Label Content="1" HorizontalAlignment="Left" Margin="453,287,0,0" VerticalAlignment="Top" Width="36"
+                       HorizontalContentAlignment="Center"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="453,308,0,0" VerticalAlignment="Top" Width="36"/>
+                <Label Content="R2*C" HorizontalAlignment="Left" Margin="453,310,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="490,298,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_omega3" Margin="508,299,0,0" IsEnabled="False"/>
+                <Label Content="r/s" HorizontalAlignment="Left" Margin="558,298,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__p =" HorizontalAlignment="Left" Margin="10,223,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uInP" Margin="66,224,0,0" TextChanged="NonInvPeakInputVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="116,223,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__p__eff = U__in__p / √2 =" HorizontalAlignment="Left" Margin="164,223,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uInPEff" Margin="314,224,0,0" TextChanged="NonInvPeakInputVoltageChanged"/>
+                <Label Content="V" HorizontalAlignment="Left" Margin="364,223,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__out__p = U__in__p" HorizontalAlignment="Left" Margin="10,269,0,0" VerticalAlignment="Top"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="113,272,0,0" VerticalAlignment="Top"/>
+                <Label Content="R1+R2" HorizontalAlignment="Left" Margin="128,258,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="128,279,0,0" VerticalAlignment="Top" Width="46"/>
+                <Label Content="R1" HorizontalAlignment="Left" Margin="128,281,0,0" VerticalAlignment="Top" Width="46"
+                       HorizontalContentAlignment="Center"/>
+                <Label Content="*" HorizontalAlignment="Left" Margin="174,272,0,0" VerticalAlignment="Top"/>
+                <Label Content="√(1+(ω1/ω2)²)" HorizontalAlignment="Left" Margin="189,258,0,0" VerticalAlignment="Top"/>
+                <Label Content="√(1+(ω1/ω3)²)" HorizontalAlignment="Left" Margin="189,280,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="189,279,0,0" VerticalAlignment="Top" Width="88"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="277,269,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uOutP" Margin="295,270,0,0" IsEnabled="False"/>
+                <Label Content="U__out__p__eff =" HorizontalAlignment="Left" Margin="10,312,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uOutPEff" Margin="164,313,0,0" IsEnabled="False"/>
+                <Label Content="φ = arctg(ω1/ω2) - arctg(ω1/ω3) =" HorizontalAlignment="Left" Margin="376,341,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_angle" Margin="574,342,0,0" IsEnabled="False"/>
+                <Label Content="°" HorizontalAlignment="Left" Margin="624,341,0,0" VerticalAlignment="Top"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="93,322,0,0" VerticalAlignment="Top" Width="53"/>
+                <Label Content="√2" HorizontalAlignment="Left" Margin="93,324,0,0" VerticalAlignment="Top" Width="53"
+                       HorizontalContentAlignment="Center"/>
+                <Label Content="U__out__p" HorizontalAlignment="Left" Margin="93,301,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="146,312,0,0" VerticalAlignment="Top"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="63,349,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uAmpP" Margin="81,350,0,0" IsEnabled="False"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="131,349,0,0" VerticalAlignment="Top"/>
+                <local:VarBox x:Name="ni_uAmpP_dB" Margin="149,350,0,0" IsEnabled="False"/>
+                <Label Content="U__out__p" HorizontalAlignment="Left" Margin="10,337,0,0" VerticalAlignment="Top"/>
+                <Label Content="U__in__p" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="53"
+                       HorizontalContentAlignment="Center"/>
+                <Separator HorizontalAlignment="Left" Height="8" Margin="10,359,0,0" VerticalAlignment="Top" Width="53"/>
+                <Label Content="dB" HorizontalAlignment="Left" Margin="199,349,0,0" VerticalAlignment="Top"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
